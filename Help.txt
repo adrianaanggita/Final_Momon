@@ -1,0 +1,60 @@
+
+
+Objectives :
+
+	Tujuan dari permainan Monopoli ini adalah bertahan sampai lawan bangkrut. Dapatkanlah uang sebanyak-
+	banyaknya. Milikilah properti sebanyak-banyaknya. Bangunlah rumah dan hotel sebanyak-banyaknya. Usahakan 
+	jangan sampai Anda menginjak properti milik lawan, dan buatlah lawan menginjak properti Anda agar Anda 
+	bisa menarik uang dari lawan yang menginjak properti Anda! Menangkanlah permainan dengan membuat lawan 
+	Anda bangkrut dan tunduk pada Anda!
+__________________________________________________________________________________________________________________________________
+ 
+How to Play :
+
+1. Kocoklah dadu saat giliran Anda tiba untuk menggerakan bidak milik Anda. Bidak Anda akan bergerak dengan banyak 
+   langkah sesuai hasil kocokan dadu Anda. Sebagai contoh, bila Anda mendapat hasil kocokan dadu 11, maka bidak
+   Anda akan maju sebanyak 11 langkah dan berhenti pada suatu petak. 
+
+2. Bila Anda mendapat angka kembar pada kedua dadu, maka Anda akan mendapat giliran mengocok dadu lagi, namun bila
+   Anda mengocok dadu kembar sebanyak 3 kali berturut-turut dalam 1 kali giliran, maka bidak Anda akan dimasukkan 
+   ke penjara langsung tanpa bidak Anda maju terlebih dahulu.
+
+3. Setelah Anda menggerakan bidak, tentu saja bidak milik Anda akan berhenti pada petak tertentu.
+	Tanah Properti	     : Tergantung pada kondisi tanah tersebut, bila tanah tersebut belum dimiliki siapapun, maka
+			       Anda berhak membeli tanah tersebut dengan harga sesuai yang tertera pada papan. Bila Anda
+			       tidak ingin membeli tanah tersebut, Anda dapat menolak pembelian tanah tersebut. Bila
+			       Anda berhenti pada tanah yang sudah Anda miliki, Anda dapat membangun rumah di tanah
+			       tersebut dengan harga sesuai yang tertera pada kartu hak milik, Anda juga dapat membangun
+			       hotel jika Anda sudah memiliki 3 rumah pada tanah tersebut. Namun, bila Anda berhenti pada
+			       tanah yang sudah dimiliki orang lain, maka Anda wajib membayar biaya sewa seharga yang
+			       tertera pada kartu hak milik tanah tersebut. Biaya yang dibayar tergantung pada banyaknya
+			       bangunan yang ada pada tanah tersebut. 
+
+	Dana Umum/Kesempatan : Anda wajib mengambil kartu dana umum/kesempatan dan melakukan perintah sesuai yang
+			       tertera pada kartu tersebut.
+
+	Pajak		     : Anda wajib membayar pajak seharga yang tertera pada papan dan petak tersebut.
+
+	Penjara		     : Anda hanya mengunjungi penjara dan tidak mendapat perlakuan apapun, dengan kata lain Anda 
+			       hanya menumpang lewat.
+
+	Numpang Lewat	     : Anda hanya menumpang lewat pada petak tersebut, dan tidak akan mendapat perlakuan apapun.
+
+	Masuk Penjara	     : Bidak Anda akan dimasukkan ke penjara, dan Anda akan kehilangan satu kali giliran untuk
+			       keluar dari penjara.
+
+	Mulai		     : Bila bidak Anda berhenti pada petak "Mulai", Anda akan mendapat uang sebesar $20.000, dan
+			       hanya numpang lewat. Bila bidak Anda melewati petak tersebut juga Anda akan mendapat uang.
+
+4. Bila uang Anda tidak cukup untuk membayar biaya sewa ketika menginjak tanah pemain lain, atau ingin membeli tanah atau
+   membangun rumah/hotel, Anda bisa menjual properti yang Anda miliki. Anda dapat menjual tanah milik Anda dan rumah/hotel
+   yang sudah Anda bangun.
+
+5. Bila Anda harus membayar sewa, namun uang Anda tidak cukup dan Anda sudah tidak memiliki properti apapun untuk dijual,
+   maka Anda harus menyatakan "Bangkrut" dan keluar dari permainan.
+
+6. Pemenang dari permainan Monopoli adalah pemain yang bertahan sampai semua musuhnya menyatakan "Bangkrut"
+
+				Semua poin ini juga berlaku pada komputer sebagai pemain.
+
+
