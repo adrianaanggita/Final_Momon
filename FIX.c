@@ -311,7 +311,7 @@ void highScore() {
 	gotoxy(30, 5)	; printf("%c                                                                    %c\n", 186, 186);
 	gotoxy(30, 6)	; printf("%c                                                                    %c\n", 186, 186);
 	gotoxy(30, 7)	; printf("%c                                                                    %c\n", 186, 186);
-	gotoxy(52, 5)	; printf("SKOR TERTINGGI DIRAIH OLEH");                           
+	gotoxy(58, 5)	; printf("SKOR TERTINGGI");                           
 	fscanf(fhigh, "%s %s %s %d%c", &high.date, &high.time, &high.name, &high.score, &high.enter);
 	tempsc = high.score;
 	strcpy(tempdat, high.date);
