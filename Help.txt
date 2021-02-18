@@ -1,6 +1,6 @@
 
 
-Objectives :
+Tujuan :
 
 	Tujuan dari permainan Monopoli ini adalah bertahan sampai lawan bangkrut. Dapatkanlah uang sebanyak-
 	banyaknya. Milikilah properti sebanyak-banyaknya. Bangunlah rumah dan hotel sebanyak-banyaknya. Usahakan 
@@ -9,7 +9,7 @@ Objectives :
 	Anda bangkrut dan tunduk pada Anda!
 __________________________________________________________________________________________________________________________________
  
-How to Play :
+Cara bermain :
 
 1. Kocoklah dadu saat giliran Anda tiba untuk menggerakan bidak milik Anda. Bidak Anda akan bergerak dengan banyak 
    langkah sesuai hasil kocokan dadu Anda. Sebagai contoh, bila Anda mendapat hasil kocokan dadu 11, maka bidak
