@@ -101,7 +101,6 @@ int  insufficientFund(block *board, player* activePlayer, int requiredMoney);
 void payRent(block *board, player* activePlayer,player * owner);	
 void askBuy(block *board, player* activePlayer);
 void afterDiceUser(block *board, player* activePlayer, player* passivePlayer);
-int  averagePropPrice(block *board,player *activePlayer);
 void turn(block *board, player* activePlayer, player * passivePlayer);
 void afterDicePC(block *board, player* activePlayer, player* passivePlayer);	
 int  checkFinish(player activePlayer);
@@ -2276,7 +2275,7 @@ int insufficientFund(block *board, player* activePlayer, int requiredMoney) {
     return flag;
 }
 
-void payRent(block *board, player* activePlayer,player * owner) {	
+void payRent(block *board, player* activePlayer, player * owner) {	
 	
 	//modul bayar uang sewa
 	block *temp;
@@ -2408,14 +2407,14 @@ void afterDiceUser(block *board, player* activePlayer, player* passivePlayer) {
                     }
 				}
 			} 
+			
 			//jika tanah orang lain
 			else if (board->owner.type == passivePlayer->type){
                 gotoxy(123, 23)	; printf("%s tiba di %s milik %s.", activePlayer->name, board->name, passivePlayer->name);
 				payRent(board, activePlayer, passivePlayer);
             } 
             
-            //jika tanah milik sendiri
-            
+			//jika tanah milik sendiri
 			else if (activePlayer->type == board->owner.type) {
 				gotoxy(123, 23)	; printf("%s tiba di %s miliknya.", activePlayer->name, board->name, passivePlayer->name);
 				gotoxy(88, 35); system("pause");
@@ -2549,21 +2548,6 @@ void afterDiceUser(block *board, player* activePlayer, player* passivePlayer) {
     gotoxy(88, 35); system("pause");
 }
 
-int averagePropPrice(block *board,player *activePlayer) {
-	int i;
-
-	double toplam = 0,average;
-	for (i = 0; i < 32; i++) {
-        if (board->type == property) {
-            toplam += board->price;
-		}
-		board = board->next;
-	}
-	average = toplam / 16;
-
-	return average;
-}
-
 void turn(block *board, player* activePlayer, player * passivePlayer) {	
 
 	block *temp;
@@ -2636,15 +2620,13 @@ void turn(block *board, player* activePlayer, player * passivePlayer) {
 }
 
 void afterDicePC(block *board, player* activePlayer, player* passivePlayer) {	
-	
 	block *temp;
 	temp = (block*)malloc(sizeof(block));
 	temp = board;
-    int selection, average, j, f, id, i, max; 
+    int selection, j, f, id, i, max; 
 	int insuf_flag = 1; 
 	int l = 0;
     
-	average = averagePropPrice(board, activePlayer);
     board = temp;
     
 	for (j = 0; j < activePlayer->position; j++) {
@@ -2656,61 +2638,62 @@ void afterDicePC(block *board, player* activePlayer, player* passivePlayer) {
        		
        		//print kotak keterangan
 			printKartu(board);
-       		
-       		//berhenti di properti
+    
 			gotoxy(123, 23)	; printf("%s tiba di %s", activePlayer->name, board->name);
             
-            
+            //jika tanah belum dibeli siapapun
 			if (board->owner.type == none) {
-                if (board->price < average) {
-                	if (activePlayer->account < board->price) {
-                        return;
-                    }
-                	buyProp(board,activePlayer);
-                	board = temp;
-				} else {
-					i = rollDice();
-					if (i < 4) {
-						if (activePlayer->account < board->price) {
-                        	return;
-                    	}
-                    	for (j = 0; j < activePlayer->position; j++) {
-							board = board->next;
-						}
-                		buyProp(board,activePlayer);
-                		board = temp;
+				switch (activePlayer->type) {
+				case ez:
+					if (board->price < activePlayer->account) {
+						buyProp(board , activePlayer);
+						break;
+					}	
+				case med:
+					if(board->price < activePlayer->account && activePlayer->account-board->price > 20000){
+						buyProp(board, activePlayer);
+						break;
 					}
-					if (i > 3) {//sýra geçsin
-						return;
+					
+				case hd:
+					if(board->price < activePlayer->account && activePlayer->account-board->price > 30000){
+						buyProp(board, activePlayer);
+						break;
 					}
 				}
-				if (activePlayer->type == board->owner.type) {
-                	if (countProp(*activePlayer) == PROPERTY_COUNT / 3) {
-                    	i = rollDice();
-                    	if (i < 4) {
-                    		for (j = 0; j < activePlayer->position; j++) {
-								board = board->next;
-							}
-			        		if (board->houseOwned > 2) {
-			        			printf("pc can't built house because block full\n");
-								return;
-							} else {
-								printf("pc built a house\n");
-			        			board->houseOwned += 1;
-			        		}
-						} else {
-			        		return;
-						}
-					} else {
-						return;
-					}
-            	}
-			} else { //Jika miliknya sendiri
+			}
+			
+			//jika tanah milik lawan
+			else if (board->owner.type == passivePlayer->type ) {
+				gotoxy(123, 23)	; printf("%s tiba di %s milik %s.", passivePlayer->name, board->name, activePlayer->name);
 				board = temp;
 				for(j = 0; j < activePlayer->position; j++) {
 					board = board->next;
 				}
-                payRent(board, activePlayer, passivePlayer);
+			    payRent(board, activePlayer, passivePlayer);
+			} 
+			            
+			 //jika tanah miliki sendiri
+			else { 
+				switch(activePlayer->type){
+					case ez:
+						if(board->housePrice < activePlayer->account && board->houseOwned < 4){
+							buildHouse(board, activePlayer);
+							break;
+						}
+						
+					case med:
+						if(board->housePrice < activePlayer->account && activePlayer->account - board->housePrice > 20000 && board->houseOwned < 4){
+							buildHouse(board, activePlayer);
+							break;
+						}
+						
+					case hd:
+						if(board->housePrice < activePlayer->account && activePlayer->account - board->housePrice > 40000 && board->houseOwned < 4){
+							buildHouse(board, activePlayer);
+							break;
+						}
+				}
 			}
         	break;
         
@@ -2727,7 +2710,7 @@ void afterDicePC(block *board, player* activePlayer, player* passivePlayer) {
 				board = board->next;
 			}
             f = board->rent;
-            while (countProp(*activePlayer)!= 0 && activePlayer->account < f) {//parasý yetmiyorsa
+            while (countProp(*activePlayer)!= 0 && activePlayer->account < f) 
                 i = 0;
                 max = activePlayer->blockOwned[i];
 				while (activePlayer->blockOwned[i] != -1) {
@@ -2753,13 +2736,8 @@ void afterDicePC(block *board, player* activePlayer, player* passivePlayer) {
                 if (board->houseOwned == 3) {
                     activePlayer->account += (board->price+(3*board->housePrice)) / 2;
                 }
-    		}
-            if (activePlayer->account > f) {
-                activePlayer->account = activePlayer->account - f;
-           	} else {
-                activePlayer->account=0;
-            }
-            break;
+    		
+       
        
        //berhenti di penjara
 	   case punish:
@@ -2888,7 +2866,7 @@ void playGame(block *board, player* player1, player* player2) {
         is_end = checkFinish(*player1);
 
 		if (is_end == 0) {
-			dice = 8;
+			dice = rollDice();
 					            
             if (player2->skipTurn == 0) {
             	
