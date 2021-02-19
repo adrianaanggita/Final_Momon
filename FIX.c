@@ -30,9 +30,9 @@ typedef enum playerType {
 	none = -1, user, ez, med, hd
 } playerType;
 
-typedef enum blocktype {
+typedef enum blockType {
 	start, property, tax, punish, fortune
-} blocktype;
+} blockType;
 
 typedef struct player {
 	playerType type;
@@ -44,6 +44,7 @@ typedef struct player {
 } player;
 
 typedef struct block {
+	blockType type;
 	int blockID;
 	char *name;
 	int price;
@@ -54,7 +55,6 @@ typedef struct block {
 	int rent4;
 	int housePrice;
 	int houseOwned;
-	blocktype type;
 	player owner;
 	struct block *next;
 } block;
@@ -71,7 +71,6 @@ void highScore();
 void credit();
 void menuGame();
 void gameChoice();
-void entryScore(player *player1);
 void entryName();
 
 /* MODUL MAP/PRINT */
@@ -89,6 +88,7 @@ void printBoard(block *board, player player1, player player2);
 
 /* MODUL PLAY GAME */
 
+void entryScore(player *player1);
 int  rollDice();
 int  buildHouse(block*atmBlock, player* activePlayer);
 void addOwned(player* activePlayer);
@@ -385,6 +385,7 @@ void gameChoice() {
 		}
 	}
 	while (option != 4);
+	
 }
 	
 void entryScore(player *player1){ 
@@ -2656,7 +2657,7 @@ void afterDicePC(block *board, player* activePlayer, player* passivePlayer) {
 					}
 					
 				case hd:
-					if(board->price < activePlayer->account && activePlayer->account-board->price > 30000){
+					if(board->price < activePlayer->account && activePlayer->account-board->price > 40000){
 						buyProp(board, activePlayer);
 						break;
 					}
@@ -2979,7 +2980,9 @@ void playGame(block *board, player* player1, player* player2) {
 }
 
 int startGame(int option) {
+	
 	int i;
+	
 	system("mode 250, 60");
 	block *board;
 	board = (block*)malloc(sizeof(block));
@@ -3025,6 +3028,5 @@ int startGame(int option) {
 	board = temp;
 	playGame (board, &player1, &player2);
 	
-	return 0;
 }
 
